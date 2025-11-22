@@ -9,17 +9,18 @@ import Navbar from "./components/Navbar";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
       <Navbar />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sorting" element={<Sorting />} />
-        <Route path="/searching" element={<Searching />} />
-        <Route path="/graphs" element={<Graphs />} />
-        <Route path="/dp" element={<DP />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </div>
+      <div className="pt-20">  {/* pushes content below navbar */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/sorting" element={<Sorting />} />
+          <Route path="/searching" element={<Searching />} />
+          <Route path="/graphs" element={<Graphs />} />
+          <Route path="/dp" element={<DP />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </>
   );
 }
