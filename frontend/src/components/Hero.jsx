@@ -6,8 +6,15 @@ const Hero = () => {
       <img 
         src={Img3d} 
         alt="3D Graphic" 
-        className="w-3/5 object-contain"
-      />
+        className="
+            w-[90%]          /* default for mobile */
+            sm:w-[70%]       /* small screens */
+            md:w-[55%]       /* tablets */
+            lg:w-[55%]       /* desktops */
+            xl:w-[45%]       /* large desktops */
+            object-contain
+        "
+    />
     </div>
   );
 };
