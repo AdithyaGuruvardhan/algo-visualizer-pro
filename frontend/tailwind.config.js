@@ -11,6 +11,9 @@ export default {
         lightblue1: "#495aee",
         lightblue2: "#929bec",
         lightblue3: "#dce2f4",
+      },
+      fontFamily: {
+        tektur: ["Tektur", "sans-serif"],
       }
     }
   },

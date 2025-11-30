@@ -13,6 +13,7 @@ const Hero = () => {
             lg:w-[55%]       /* desktops */
             xl:w-[45%]       /* large desktops */
             object-contain
+            transform translate-y-20
         "
     />
     </div>

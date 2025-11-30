@@ -24,7 +24,7 @@ export default function Navbar() {
     shadow-lg rounded-xl
     flex justify-evenly items-center
     py-1 px-6 
-    z-50 whitespace-nowrap
+    z-50 whitespace-nowrap font-tektur
   ">
       <div className="max-w-6xl mx-auto w-full">
         <div className="flex justify-between items-center py-3">
@@ -78,6 +78,16 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {open && (
           <div className="md:hidden flex flex-col gap-4 pb-4">
+            {navItemsL.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.path}
+                onClick={() => setOpen(false)}
+                className="text-lg text-gray-700 hover:text-blue-600"
+              >
+                {item.name}
+              </NavLink>
+            ))}
             {navItems.map((item) => (
               <NavLink
                 key={item.name}
