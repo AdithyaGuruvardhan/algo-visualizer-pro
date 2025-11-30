@@ -4,25 +4,53 @@ import { Link, NavLink } from "react-router-dom";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
+    const navItemsL = [
+    { name: "Home", path: "/sorting" },
+    { name: "About", path: "/searching" },
+    { name: "Sign In", path: "/graphs" },
+  ];
+
   const navItems = [
     { name: "Sorting", path: "/sorting" },
     { name: "Searching", path: "/searching" },
     { name: "Graphs", path: "/graphs" },
-    { name: "DP", path: "/dp" },
   ];
 
   return (
-    <nav className="bg-dark shadow-md fixed top-0 left-0 w-full z-50">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="flex justify-between items-center py-4">
+    <nav className="
+    fixed top-4 left-1/2 -translate-x-1/2
+    w-[95%] sm:w-[80%] md:w-[65%] lg:w-[60%]
+    bg-white/20 backdrop-blur-md
+    shadow-lg rounded-xl
+    flex justify-evenly items-center
+    py-1 px-6 
+    z-50 whitespace-nowrap
+  ">
+      <div className="max-w-6xl mx-auto w-full">
+        <div className="flex justify-between items-center py-3">
+          <div className="hidden sm:flex items-center justify-center gap-8 flex-1 px-6">
+            {navItemsL.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.path}
+                className={({ isActive }) =>
+                  `text-lg hover:text-blue-600 ${
+                    isActive ? "text-blue-600 font-semibold" : "text-gray-700"
+                  }`
+                }
+              >
+                {item.name}
+              </NavLink>
+            ))}
+          </div>
 
           {/* Logo */}
-          <Link to="/" className="text-2xl font-bold text-accent">
+          <Link to="/" className="text-2xl font-bold text-accent flex-shrink-0">
             AlgoVisualizer Pro
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex gap-6">
+          <div className="hidden sm:flex items-center justify-center gap-8 flex-1 px-6">
             {navItems.map((item) => (
               <NavLink
                 key={item.name}
