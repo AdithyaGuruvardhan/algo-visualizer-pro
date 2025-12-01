@@ -10,7 +10,7 @@ export default function Home() {
         <Hero />
 
         {/* Text overlay */}
-        <div className="absolute top-8 sm:top-12 md:top-16 left-1/2 transform -translate-x-1/2 text-center">
+        <div className="absolute top-32 sm:top-24 md:top-32 left-1/2 transform -translate-x-1/2 text-center">
           <h1 className="font-tektur text-4xl sm:text-5xl md:text-6xl font-bold text-textPrimary">
             From Confusion to Clarity-Visually.
           </h1>

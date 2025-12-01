@@ -12,7 +12,7 @@ export default function App() {
     <>
       <Navbar />
 
-      <div className="pt-20"> {/* pushes content below navbar */}
+      <div> {/* pushes content below navbar */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/sorting" element={<Sorting />} />
