@@ -12,7 +12,7 @@ export default function Home() {
         {/* Text overlay */}
         <div className="absolute top-8 sm:top-12 md:top-16 left-1/2 transform -translate-x-1/2 text-center">
           <h1 className="font-tektur text-4xl sm:text-5xl md:text-6xl font-bold text-textPrimary">
-            Welcome to Algo Visualizer Pro 🚀
+            From Confusion to Clarity-Visually.
           </h1>
         </div>
       </div>
