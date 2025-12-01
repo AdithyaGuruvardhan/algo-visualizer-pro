@@ -1,21 +1,16 @@
-import Img3d from "../assets/3dImg.png";
+import Img3d from "../assets/3dbluelightwave.png";
 
 const Hero = () => {
   return (
-    <div className="hero flex justify-center items-center h-screen">
-      <img 
-        src={Img3d} 
-        alt="3D Graphic" 
+    <div className="flex justify-center items-center w-full min-h-[70vh]">
+      <img
+        // src={Img3d}
         className="
-            w-[90%]          /* default for mobile */
-            sm:w-[70%]       /* small screens */
-            md:w-[55%]       /* tablets */
-            lg:w-[55%]       /* desktops */
-            xl:w-[45%]       /* large desktops */
-            object-contain
-            transform translate-y-20
-        "
-    />
+    w-full h-full
+    object-cover
+    translate-y-10
+  "
+      />
     </div>
   );
 };
