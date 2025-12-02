@@ -42,7 +42,7 @@ export default function Navbar() {
                 `text-base transition ${
                   isActive
                     ? "text-blue-300 font-semibold"
-                    : "text-gray-200 hover:text-textrimary"
+                    : "text-gray-200 hover:text-textSecondary"
                 }`
               }
             >
