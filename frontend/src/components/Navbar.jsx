@@ -50,10 +50,9 @@ export default function Navbar() {
               key={item.name}
               to={item.path}
               className={({ isActive }) =>
-                `text-base transition ${
-                  isActive
-                    ? "text-blue-300 font-semibold"
-                    : "text-gray-200 hover:text-textSecondary"
+                `text-base transition ${isActive
+                  ? "text-blue-300 font-semibold"
+                  : "text-gray-200 hover:text-textSecondary"
                 }`
               }
             >
@@ -77,14 +76,12 @@ export default function Navbar() {
           onClick={() => setOpen((prev) => !prev)}
         >
           <span
-            className={`block absolute h-0.5 w-6 bg-white transform transition duration-300 pointer-events-none ${
-              open ? "rotate-45" : "-translate-y-1.5"
-            }`}
+            className={`block absolute h-0.5 w-6 bg-white transform transition duration-300 pointer-events-none ${open ? "rotate-45" : "-translate-y-1.5"
+              }`}
           ></span>
           <span
-            className={`block absolute h-0.5 w-6 bg-white transform transition duration-300 pointer-events-none ${
-              open ? "-rotate-45" : "translate-y-1.5"
-            }`}
+            className={`block absolute h-0.5 w-6 bg-white transform transition duration-300 pointer-events-none ${open ? "-rotate-45" : "translate-y-1.5"
+              }`}
           ></span>
         </button>
       </div>

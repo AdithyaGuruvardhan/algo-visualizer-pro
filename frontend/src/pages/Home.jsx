@@ -25,7 +25,7 @@ export default function Home() {
           <h1
             className="
               font-tektur font-bold text-textPrimary
-              text-2xl sm:text-5xl md:text-5xl lg:text-6xl
+              text-4xl sm:text-4xl md:text-6xl lg:text-6xl
               leading-snug
               max-w-4xl">
             From Confusion to Clarity — Visually.
@@ -34,9 +34,9 @@ export default function Home() {
           <h5
             className="
               font-tektur text-textPrimary
-              text-sm sm:text-lg md:text-lg lg:text-xl
+              text-md sm:text-md md:text-lg lg:text-xl
               mt-14 sm:mt-12 md:mt-14
-              max-w-3xl">
+              max-w-2xl">
             Understand algorithms instantly with interactive visuals — your shortcut to mastering DSA & problem solving.
           </h5>
         </div>
