@@ -1,109 +1,83 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Features() {
-  const sectionRef = useRef(null);
-  const [scale, setScale] = useState(0.95); // width scale
+  const featuresRef = useRef(null);
+  const containerRef = useRef(null);
 
   const features = [
-    {
-      title: "Interactive Algorithm Visuals",
-      desc: "Watch every step of sorting, searching, trees, and graphs with smooth animations.",
-      icon: "📊",
-    },
-    {
-      title: "Step-by-Step Execution",
-      desc: "Control speed, pause, rewind, and see variable changes in real-time.",
-      icon: "⚙️",
-    },
-    {
-      title: "DSA Patterns & Roadmaps",
-      desc: "Structured learning paths from beginner to advanced problem-solving.",
-      icon: "🧭",
-    },
-    {
-      title: "Clean, Distraction-Free UI",
-      desc: "Minimal, elegant interface built to help you focus and learn faster.",
-      icon: "✨",
-    },
-    {
-      title: "Clean, Distraction-Free UI",
-      desc: "Minimal, elegant interface built to help you focus and learn faster.",
-      icon: "✨",
-    },
-    {
-      title: "Clean, Distraction-Free UI",
-      desc: "Minimal, elegant interface built to help you focus and learn faster.",
-      icon: "✨",
-    },
-    {
-      title: "Clean, Distraction-Free UI",
-      desc: "Minimal, elegant interface built to help you focus and learn faster.",
-      icon: "✨",
-    },
-
+    { title: "Interactive Algorithm Visuals", desc: "Watch every step of sorting, searching, trees, and graphs with smooth animations.", icon: "📊" },
+    { title: "Step-by-Step Execution", desc: "Control speed, pause, rewind, and see variable changes in real-time.", icon: "⚙️" },
+    { title: "DSA Patterns & Roadmaps", desc: "Structured learning paths from beginner to advanced problem-solving.", icon: "🧭" },
+    { title: "Clean, Distraction-Free UI", desc: "Minimal, elegant interface built to help you focus and learn faster.", icon: "✨" },
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      const section = sectionRef.current;
-      if (!section) return;
+    const wrapper = featuresRef.current;
+    const container = containerRef.current;
 
-      const rect = section.getBoundingClientRect();
+    // Set wrapper height to match scrollable width for pin effect
+    const totalScrollWidth = container.scrollWidth;
+    const viewportWidth = window.innerWidth;
+    wrapper.style.height = `${container.offsetHeight + totalScrollWidth - viewportWidth}px`;
+    const scrollDistance = container.scrollWidth - wrapper.clientWidth;
 
-      const viewportHeight = window.innerHeight;
+    gsap.to(container, {
+      x: () => -scrollDistance,
+      ease: "none",
+      scrollTrigger: {
+        trigger: wrapper,
+        start: "top-=100 top",
+        end: () => `+=${scrollDistance}`,
+        scrub: true,
+        pin: true,
+      },
+    });
 
-      // When the section center is in the viewport → shrink to 70%
-      const progress = 1 - Math.abs(rect.top - viewportHeight / 2) / (viewportHeight / 2);
-
-      // clamp 0 → 1
-      const clamped = Math.max(0, Math.min(1, progress));
-
-      const minScale = 0.7;
-      const maxScale = 0.95;
-
-      const newScale = maxScale - (maxScale - minScale) * clamped;
-
-      setScale(newScale);
+    // Cleanup
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full py-24 flex justify-center">
-      <div
-        className="transition-all duration-300 p-10 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10"
-        style={{
-          width: `${scale * 100}%`,
-          maxWidth: "1100px",
-          transition: "width 0.25s cubic-bezier(0.25,0.6,0.3,1)",
-        }}
-      >
-        <h2 className="font-tektur text-3xl sm:text-4xl font-bold mb-8 text-center">
+    <section ref={featuresRef} className="w-full overflow-hidden relative">
+      <div className="max-w-5xl mx-auto">
+        <h2 className="font-tektur text-3xl sm:text-4xl font-bold mb-6 text-center text-textPrimary">
           Powerful Features Built for Future Engineers
         </h2>
 
-        <p className="text-sm sm:text-base max-w-2xl mx-auto mb-12 text-center opacity-80">
+        <p className="text-sm sm:text-base max-w-2xl mx-auto mb-14 text-center opacity-80 text-textSecondary">
           Explore a modern, visual way to master algorithms — fast, intuitive, and interactive.
         </p>
 
-        {/* Stacked cards (always 1 column) */}
-        <div className="grid grid-cols-1 gap-8">
+        {/* Horizontal scroll container */}
+        <div ref={containerRef} className="flex gap-8 px-6">
           {features.map((f, i) => (
             <div
               key={i}
-              className="p-6 bg-white/10 rounded-2xl border border-white/15 hover:bg-white/20 shadow-lg hover:shadow-2xl transition"
+              className="
+                flex-shrink-0 w-80 sm:w-96
+                p-6 rounded-2xl 
+                bg-white/10 
+                backdrop-blur-xl 
+                border border-white/15 
+                shadow-lg 
+                transition 
+                hover:bg-white/20 
+                hover:shadow-2xl
+                text-textPrimary
+              "
             >
               <div className="text-4xl mb-3">{f.icon}</div>
-              <h3 className="text-xl font-semibold mb-2 font-tektur">
-                {f.title}
-              </h3>
+              <h3 className="text-xl font-semibold mb-2 font-tektur">{f.title}</h3>
               <p className="text-sm opacity-90">{f.desc}</p>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );
