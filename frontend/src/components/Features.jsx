@@ -45,14 +45,17 @@ export default function Features() {
 
   return (
     <section ref={featuresRef} className="w-full overflow-hidden relative">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="font-tektur text-3xl sm:text-4xl font-bold mb-6 text-center text-textPrimary">
-          Powerful Features Built for Future Engineers
+      <div className="w-full lg:max-w-screen-xl lg:mx-auto mt-16 px-4 sm:px-6 md:px-8">
+        <h2 className="font-tektur tracking-tight leading-none 
+        text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 
+        font-bold mb-6 text-start text-textPrimary">
+          Why Algo Visualizer Pro
         </h2>
 
-        <p className="text-sm sm:text-base max-w-2xl mx-auto mb-14 text-center opacity-80 text-textSecondary">
-          Explore a modern, visual way to master algorithms — fast, intuitive, and interactive.
-        </p>
+        <div className="text-sm sm:text-base mb-14 text-start opacity-80 text-textPrimary">
+          <p>Explore a modern, visual way to master algorithms</p>
+          <p>Fast, intuitive, and interactive.</p>
+        </div>
 
         {/* Horizontal scroll container */}
         <div ref={containerRef} className="flex gap-8 px-6">
