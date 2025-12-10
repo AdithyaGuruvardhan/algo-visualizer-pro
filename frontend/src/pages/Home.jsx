@@ -85,6 +85,8 @@ export default function Home() {
       {/* Features Section */}
       <Features />
 
+      <Hero />
+
     </div>
   );
 }

@@ -19,25 +19,29 @@ export default function Features() {
     const wrapper = featuresRef.current;
     const container = containerRef.current;
 
-    // Set wrapper height to match scrollable width for pin effect
-    const totalScrollWidth = container.scrollWidth;
-    const viewportWidth = window.innerWidth;
-    wrapper.style.height = `${container.offsetHeight + totalScrollWidth - viewportWidth}px`;
-    const scrollDistance = container.scrollWidth - wrapper.clientWidth;
+    const totalWidth = container.scrollWidth;
+    const viewportWidth = wrapper.offsetWidth;
+
+    const scrollDistance = totalWidth - viewportWidth;
+
+    wrapper.style.height = `${scrollDistance + container.offsetHeight}px`;
+
+    gsap.set(container, {
+      x: viewportWidth * 0.95,  // moves the whole row out of viewport
+    });
 
     gsap.to(container, {
-      x: () => -scrollDistance,
+      x: -scrollDistance,
       ease: "none",
       scrollTrigger: {
         trigger: wrapper,
-        start: "top-=100 top",
+        start: "top-=45 top",
         end: () => `+=${scrollDistance}`,
-        scrub: true,
+        scrub: 3,
         pin: true,
       },
     });
 
-    // Cleanup
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
@@ -45,43 +49,47 @@ export default function Features() {
 
   return (
     <section ref={featuresRef} className="w-full overflow-hidden relative">
-      <div className="w-full lg:max-w-screen-xl lg:mx-auto mt-16 px-4 sm:px-6 md:px-8">
+
+      {/* TEXT AREA with centered, limited width */}
+      <div className="max-w-screen-xl mx-auto mt-16 px-4 sm:px-6 md:px-8">
         <h2 className="font-tektur tracking-tight leading-none 
-        text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 
-        font-bold mb-6 text-start text-textPrimary">
-          Why Algo Visualizer Pro
+          text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 
+          font-bold mb-6 text-start text-textPrimary">
+          Why AlgoVisualizer Pro
         </h2>
 
         <div className="text-sm sm:text-base mb-14 text-start opacity-80 text-textPrimary">
           <p>Explore a modern, visual way to master algorithms</p>
           <p>Fast, intuitive, and interactive.</p>
         </div>
-
-        {/* Horizontal scroll container */}
-        <div ref={containerRef} className="flex gap-8 px-6">
-          {features.map((f, i) => (
-            <div
-              key={i}
-              className="
-                flex-shrink-0 w-80 sm:w-96
-                p-6 rounded-2xl 
-                bg-white/10 
-                backdrop-blur-xl 
-                border border-white/15 
-                shadow-lg 
-                transition 
-                hover:bg-white/20 
-                hover:shadow-2xl
-                text-textPrimary
-              "
-            >
-              <div className="text-4xl mb-3">{f.icon}</div>
-              <h3 className="text-xl font-semibold mb-2 font-tektur">{f.title}</h3>
-              <p className="text-sm opacity-90">{f.desc}</p>
-            </div>
-          ))}
-        </div>
       </div>
+
+      {/* FULL-WIDTH GSAP SCROLL CONTAINER */}
+      <div ref={containerRef} className="flex gap-8 px-6 w-full">
+        {features.map((f, i) => (
+          <div
+            key={i}
+            className="
+              flex flex-col justify-end
+              flex-shrink-0 w-80 sm:w-96
+              px-8 py-12 rounded-2xl 
+              bg-white/10 
+              backdrop-blur-xl 
+              border border-white/15 
+              shadow-lg 
+              transition 
+              hover:bg-white/20 
+              hover:shadow-2xl
+              text-textPrimary
+            "
+          >
+            <div className="text-4xl mb-3">{f.icon}</div>
+            <h3 className="text-xl font-semibold mb-2 font-tektur">{f.title}</h3>
+            <p className="text-sm opacity-90">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+
     </section>
   );
 }
