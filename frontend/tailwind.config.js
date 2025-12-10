@@ -4,7 +4,7 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
+    extend: { 
       colors: {
         darkblue1: "#000008",
         darkblue2: "#080523",

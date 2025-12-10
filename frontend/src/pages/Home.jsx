@@ -45,10 +45,10 @@ export default function Home() {
 
         {/* ---- SCROLL INDICATOR (Circular Text + Mouse) ---- */}
         <div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 
             w-14 h-14 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-16 lg:h-16 
             flex items-center justify-center
-            pointer-events-auto">
+            pointer-events-none">
           <div className="relative w-full h-full flex items-center justify-center">
 
             {/* SVG Circular Text */}
