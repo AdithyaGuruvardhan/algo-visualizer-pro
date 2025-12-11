@@ -24,8 +24,6 @@ export default function Features() {
 
     const scrollDistance = totalWidth - viewportWidth;
 
-    wrapper.style.height = `${scrollDistance + container.offsetHeight}px`;
-
     gsap.set(container, {
       x: viewportWidth * 0.95,
     });
@@ -36,8 +34,8 @@ export default function Features() {
       scrollTrigger: {
         trigger: wrapper,
         start: "top-=45 top",
-        end: () => `+=${scrollDistance + 400}`,
-        scrub: 4,
+        end: () => `+=${scrollDistance}`,
+        scrub: 0,
         pin: true,
       },
     });
@@ -48,7 +46,7 @@ export default function Features() {
   }, []);
 
   return (
-    <section ref={featuresRef} className="w-full overflow-hidden relative">
+    <section ref={featuresRef} className="w-full overflow-hidden relative pb-12">
 
       {/* TITLE + SUBTITLE */}
       <div className="max-w-screen-xl mx-auto mt-16 px-4 sm:px-6 md:px-8">

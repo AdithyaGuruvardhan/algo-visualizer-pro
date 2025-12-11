@@ -1,5 +1,6 @@
 import Hero from "../components/Hero";
 import Features from "../components/Features";
+import AlgoVCover from "../components/AlgoVCover"
 
 
 export default function Home() {
@@ -85,7 +86,8 @@ export default function Home() {
       {/* Features Section */}
       <Features />
 
-      <Hero />
+      {/* Algorithms We Cover */}
+      <AlgoVCover />
 
     </div>
   );
