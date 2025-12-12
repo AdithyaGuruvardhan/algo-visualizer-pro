@@ -37,6 +37,8 @@ export default function AlgoVCover() {
     const wrapperRef = useRef(null);
     const pathRef = useRef(null);
     const markerRef = useRef(null);
+    const canvasRef = useRef(null);
+
 
     const [svgHeight, setSvgHeight] = useState(3000);
 
@@ -52,10 +54,44 @@ export default function AlgoVCover() {
 
         if (!wrapper || !path || !marker) return;
 
-        // Set wrapper height
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext("2d");
+        const parent = canvas.parentElement;
+
+        function drawGrid() {
+            canvas.width = parent.clientWidth;
+            canvas.height = parent.clientHeight;
+
+            const gridSize = 20; // spacing between lines
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.strokeStyle = "rgba(255, 255, 255, 0.07)"; // light grid lines
+            ctx.lineWidth = 0.5;
+
+            ctx.beginPath();
+
+            // Vertical grid lines
+            for (let x = 0; x <= canvas.width; x += gridSize) {
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+            }
+
+            // Horizontal grid lines
+            for (let y = 0; y <= canvas.height; y += gridSize) {
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+            }
+
+            ctx.stroke();
+        }
+
+
         wrapper.style.height = `${clusters.length * window.innerHeight}px`;
 
-        // Animate clusters and items
+        drawGrid();
+
+        window.addEventListener("resize", drawGrid);
+
         gsap.utils.toArray(".algo-cluster").forEach((section) => {
             gsap.fromTo(
                 section,
@@ -64,12 +100,12 @@ export default function AlgoVCover() {
                     autoAlpha: 1,
                     y: 0,
                     scale: 1,
-                    ease: "power2.out",
                     duration: 0.7,
+                    ease: "power2.out",
                     scrollTrigger: {
                         trigger: section,
                         start: "top 85%",
-                        end: "top 10%",
+                        end: "top top",
                         toggleActions: "play reverse play reverse",
                     },
                 }
@@ -87,14 +123,13 @@ export default function AlgoVCover() {
                     scrollTrigger: {
                         trigger: section,
                         start: "top 85%",
-                        end: "top 10%",
+                        end: "top top",
                         toggleActions: "play reverse play reverse",
                     },
                 }
             );
         });
 
-        // Marker animation along the path
         const markerTween = gsap.to(marker, {
             motionPath: {
                 path: "#algoPath",
@@ -111,7 +146,6 @@ export default function AlgoVCover() {
             },
         });
 
-        // Marker pulse
         const pulse = gsap.to(marker, {
             scale: 1.12,
             repeat: -1,
@@ -127,13 +161,15 @@ export default function AlgoVCover() {
             markerTween.kill();
             pulse.kill();
             ScrollTrigger.getAll().forEach((t) => t.kill());
+            window.removeEventListener("resize", drawGrid);
             window.removeEventListener("resize", onResize);
         };
     }, []);
 
+
     return (
-        <section className="relative w-full text-white overflow-hidden">
-            <div ref={wrapperRef} className="relative w-full">
+        <section className="relative w-full text-white overflow-hidden mt-6">
+            <div ref={wrapperRef} className="w-full">
 
                 <div className="flex flex-col items-center justify-center 
                     text-center
@@ -144,10 +180,18 @@ export default function AlgoVCover() {
                         max-w-4xl mt-6">
                         What we Cover
                     </h1>
+                    <p className="mt-4 max-w-lg text-sm">
+                        We walk you through every core algorithm that matters for interviews and real-world problem-solving.
+                    </p>
                 </div>
 
                 {/* Background */}
-                <div className="absolute inset-0 -z-10 bg-gradient-to-br from-darkblue1 via-[#0e0750] via-[#1a0bb5] via-[#4220d4] to-lightblue3" />
+                <div className="absolute inset-0 -z-10 bg-gradient-to-br from-darkblue1 via-[#0e0750] via-[#1a0bb5] via-[#4220d4] to-lightblue3 bg-black bg-blend-multiply"/>
+
+                <canvas
+                    ref={canvasRef}
+                    className="absolute inset-0 w-full h-full pointer-events-none"
+                ></canvas>
 
                 {/* SVG Path */}
                 <svg
@@ -249,11 +293,11 @@ export default function AlgoVCover() {
 
 // Serpentine SVG path generator
 function generateSerpentinePath(segments) {
-    const slot = 900;
+    const slot = 600;
     const centerX = 360;
     const amp = 220;
 
-    let d = `M ${centerX - amp} 80`;
+    let d = `M ${centerX - amp} 40`;
     for (let i = 0; i < segments; i++) {
         const y1 = 80 + i * slot + slot / 3;
         const x1 = centerX + amp;

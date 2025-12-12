@@ -89,6 +89,8 @@ export default function Home() {
       {/* Algorithms We Cover */}
       <AlgoVCover />
 
+      <Hero/>
+
     </div>
   );
 }
