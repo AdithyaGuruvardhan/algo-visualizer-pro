@@ -44,7 +44,8 @@ export default function AlgoVCover() {
 
     // Set dynamic SVG height
     useEffect(() => {
-        setSvgHeight(clusters.length * window.innerHeight);
+        const extra = window.innerWidth < 640 ? window.innerHeight * 0.6 : 0;
+        setSvgHeight(clusters.length * window.innerHeight + extra);
     }, []);
 
     useEffect(() => {
@@ -86,7 +87,8 @@ export default function AlgoVCover() {
         }
 
 
-        wrapper.style.height = `${clusters.length * window.innerHeight}px`;
+        const extra = window.innerWidth < 640 ? window.innerHeight * 0.6 : 0;
+        wrapper.style.height = `${clusters.length * window.innerHeight + extra}px`;
 
         drawGrid();
 
@@ -168,7 +170,7 @@ export default function AlgoVCover() {
 
 
     return (
-        <section className="relative w-full text-white overflow-hidden mt-6">
+        <section className="relative w-full text-white overflow-hidden mt-1">
             <div ref={wrapperRef} className="w-full">
 
                 <div className="flex flex-col items-center justify-center 
@@ -186,7 +188,7 @@ export default function AlgoVCover() {
                 </div>
 
                 {/* Background */}
-                <div className="absolute inset-0 -z-10 bg-gradient-to-br from-darkblue1 via-[#0e0750] via-[#1a0bb5] via-[#4220d4] to-lightblue3 bg-black bg-blend-multiply"/>
+                <div className="absolute inset-0 -z-10 bg-gradient-to-br from-darkblue1 via-[#0e0750] via-[#1a0bb5] via-[#4220d4] to-lightblue3 bg-black bg-blend-multiply" />
 
                 <canvas
                     ref={canvasRef}
@@ -253,7 +255,7 @@ export default function AlgoVCover() {
 
                                 {/* Center circle */}
                                 <div className="flex flex-col items-center justify-center">
-                                    <div className="w-40 h-40 rounded-full bg-white/5 flex items-center justify-center relative">
+                                    <div className="w-40 h-40 rounded-full bg-white/10 flex items-center justify-center relative backdrop-blur-[2px]">
                                         <div className="absolute -top-4 -right-6 w-3 h-3 rounded-full bg-white/80 shadow-md" />
                                         <div className="text-xl font-semibold text-white">{c.label}</div>
                                     </div>
@@ -279,14 +281,13 @@ export default function AlgoVCover() {
                                         <div className="h-12 w-0.5 bg-white/20" />
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
 
-            <div className="h-24" />
+            <div className="h-[100px]" />
         </section>
     );
 }
@@ -306,6 +307,6 @@ function generateSerpentinePath(segments) {
         d += ` C ${centerX - amp} ${y1 - 120}, ${centerX + amp} ${y1 + 80}, ${x1} ${y1}`;
         d += ` S ${x2} ${y2}, ${x2} ${y2}`;
     }
-    d += ` Q ${centerX} ${80 + segments * slot + 40}, ${centerX + amp} ${80 + segments * slot + 80}`;
+    d += ` Q ${centerX} ${80 + segments * slot}, ${centerX + amp} ${segments * slot + 60}`;
     return d;
 }

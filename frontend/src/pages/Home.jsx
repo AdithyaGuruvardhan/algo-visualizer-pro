@@ -10,7 +10,7 @@ export default function Home() {
       {/* Hero Section */}
       <div
         className="
-          relative w-[97%] max-w-screen-xl mx-auto mt-16 flex items-center justify-center overflow-hidden
+          relative w-[95%] max-w-screen-2xl mx-auto mt-16 flex items-center justify-center overflow-hidden
           h-[85vh] sm:h-[85vh] md:h-[90vh] lg:h-[85vh]
           bg-gradient-to-br from-darkblue1 via-[#0e0750] via-[#1a0bb5] via-[#4220d4] to-lightblue3
           rounded-2xl">
@@ -88,8 +88,6 @@ export default function Home() {
 
       {/* Algorithms We Cover */}
       <AlgoVCover />
-
-      <Hero/>
 
     </div>
   );
