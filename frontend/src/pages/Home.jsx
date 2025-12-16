@@ -19,85 +19,29 @@ export default function Home() {
         {/* 3D Background / Grid */}
         <Hero />
 
-        {/* ---- CENTERED TEXT LAYER ---- */}
-        <div
-          className="
-      absolute inset-0
-      flex items-center justify-center
-      text-center px-4
-      pointer-events-none"
-        >
-          <div className="flex flex-col items-center">
-            {/* Eyebrow */}
-            <p
-              className="
-              font-tektur uppercase tracking-widest
-              text-sm sm:text-sm md:text-sm
-              text-textPrimary/90
-              mb-6"
-            >
-              Visual learning for Data Structures & Algorithms
-            </p>
-
-            {/* Main Heading (TRUE CENTER) */}
-            <h1
-              className="
-              font-tektur font-bold text-textPrimary
-              text-4xl sm:text-4xl md:text-6xl lg:text-6xl
-              leading-snug
-              max-w-4xl"
-            >
-              From Confusion to Clarity — Visually.
-            </h1>
-
-            {/* Subheading */}
-            <h5
-              className="
-              font-tektur text-textPrimary/90
-              text-sm sm:text-base md:text-lg
-              mt-8
-              max-w-xl"
-            >
-              Learn algorithms faster through interactive visuals that make logic click instantly.
-            </h5>
-          </div>
+        {/* ---- TEXT OVERLAY ---- */}
+        <div className="
+            absolute inset-0 
+            flex flex-col items-center justify-center text-center px-4 pointer-events-none">
+          <h1 className="
+            font-tektur font-bold 
+            text-textPrimary text-4xl 
+            sm:text-4xl md:text-6xl lg:text-6xl leading-snug max-w-4xl">
+            From Confusion to Clarity — Visually.
+          </h1>
+          <h5 className=" font-tektur text-textPrimary text-md sm:text-md md:text-lg lg:text-xl mt-14 sm:mt-12 md:mt-14 max-w-2xl">
+            Understand algorithms instantly with interactive visuals — your shortcut to mastering DSA & problem solving.
+          </h5>
         </div>
-
-        {/* ---- BOTTOM CTA LAYER ---- */}
+        {/* ---- SCROLL INDICATOR (Circular Text + Mouse) ---- */}
         <div
-          className="
-          absolute bottom-6
-          left-1/2 -translate-x-1/2
-          text-center
-          pointer-events-auto"
-        >
-          <button
-            className="
-            px-3 py-1 rounded-2xl
-            font-tektur font-semibold text-sm
-            bg-textPrimary text-black
-            hover:scale-105 transition-transform
-            shadow-lg"
-          >
-            Explore
-          </button>
-
-          <p className="mt-3 text-xs text-textPrimary/80">
-            No signup required
-          </p>
-        </div>
-      </div>
-
-
-      {/* ---- SCROLL INDICATOR (Circular Text + Mouse) ---- */}
-      {/* <div
           className="absolute bottom-6 left-1/2 -translate-x-1/2 
             w-14 h-14 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-16 lg:h-16 
             flex items-center justify-center
             pointer-events-none">
           <div className="relative w-full h-full flex items-center justify-center">
 
-            SVG Circular Text
+            {/* SVG Circular Text */}
             <svg
               viewBox="0 0 100 100"
               className="absolute inset-0 animate-spin-slow">
@@ -120,13 +64,13 @@ export default function Home() {
               </text>
             </svg>
 
-            Mouse Icon (center)
+            {/* Mouse Icon (center) */}
             <div className="w-5 h-8 border-2 border-textSecondary rounded-full flex justify-center items-start p-1">
               <div className="w-1 h-1 bg-textSecondary rounded-full animate-bounce"></div>
             </div>
           </div>
-        </div> */}
-
+        </div>
+      </div>
 
       {/* Features Section */}
       <Features />
