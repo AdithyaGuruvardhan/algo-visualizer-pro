@@ -10,9 +10,8 @@ export default function Navbar() {
     { name: "Home", path: "/" },
     { name: "Visualizer", path: "/visualizer" },
     { name: "Learn", path: "/learn" },
-    { name: "Roadmaps", path: "/roadmaps" },
+    { name: "Roadmap", path: "/Roadmap" },
     { name: "Patterns", path: "/patterns" },
-    { name: "About", path: "/about" },
   ];
 
   // Close menu if click outside menu or button
@@ -40,7 +39,7 @@ export default function Navbar() {
           to="/"
           className="text-lg sm:text-lg md:text-md lg:text-lg font-bold text-white drop-shadow-md"
         >
-          AlgoVisualizer Pro
+          AlgoVisualizer <span className="text-lightblue3">Pro</span>
         </Link>
 
         {/* --- MIDDLE NAV (Desktop Only) --- */}

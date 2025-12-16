@@ -6,6 +6,7 @@ import Graphs from "./pages/Graphs";
 import DP from "./pages/DP";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
+import Roadmap from "./pages/Roadmap";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <div> {/* pushes content below navbar */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/roadmap" element={<Roadmap />} />
           <Route path="/sorting" element={<Sorting />} />
           <Route path="/searching" element={<Searching />} />
           <Route path="/graphs" element={<Graphs />} />

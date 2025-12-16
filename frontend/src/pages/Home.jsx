@@ -1,6 +1,7 @@
 import Hero from "../components/Hero";
 import Features from "../components/Features";
-import AlgoVCover from "../components/AlgoVCover"
+import AlgoHero from "../components/AlgoHero"
+import Footer from "../components/Footer";
 
 
 export default function Home() {
@@ -76,7 +77,10 @@ export default function Home() {
       <Features />
 
       {/* Algorithms We Cover */}
-      <AlgoVCover />
+      <AlgoHero />
+      
+      {/* Footer Section */}
+      <Footer />
 
     </div>
   );

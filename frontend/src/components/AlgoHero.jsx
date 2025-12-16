@@ -287,28 +287,8 @@ export default function AlgoVCover() {
                 </div>
             </div>
 
-            {/* <div className="h-[100px]" /> */}
-            <div className="mt-36 bg-white text-black px-6 md:px-12">
-                <div className="max-w-5xl mx-auto text-center">
-
-                    {/* Eyebrow */}
-                    <p className="text-sm font-semibold uppercase tracking-widest text-indigo-600 mb-3">
-                        Our Edge
-                    </p>
-
-                    {/* Main headline */}
-                    <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
-                        We keep you ahead of the curve
-                    </h1>
-
-                    {/* Stand-out subtext */}
-                    <p className="text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
-                        By turning complex algorithms into clear, interactive visual experiences,
-                        we help you learn faster, think deeper, and stay industry-ready.
-                    </p>
-
-                </div>
-            </div>
+            <div className="h-[100px]" />
+            
 
         </section>
     );
