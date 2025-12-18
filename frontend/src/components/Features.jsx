@@ -46,7 +46,7 @@ export default function Features() {
   }, []);
 
   return (
-    <section ref={featuresRef} className="w-full overflow-hidden relative pb-12">
+    <section ref={featuresRef} className="w-full overflow-hidden relative pb-12  bg-light-surface dark:bg-dark-surface">
 
       {/* TITLE + SUBTITLE */}
       <div className="max-w-screen-xl mx-auto mt-16 px-4 sm:px-6 md:px-8">

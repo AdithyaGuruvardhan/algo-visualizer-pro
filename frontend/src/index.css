@@ -20,3 +20,7 @@ body {
 .animate-spin-slow {
   animation: spin-slow 10s linear infinite;
 }
+
+html, body {
+  transition: background-color 0.75s ease, color 0.75s ease;
+}

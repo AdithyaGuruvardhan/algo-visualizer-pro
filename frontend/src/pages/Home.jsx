@@ -14,8 +14,18 @@ export default function Home() {
     relative w-[95%] max-w-screen-2xl mx-auto mt-16
     flex items-center justify-center overflow-hidden
     h-[85vh] sm:h-[85vh] md:h-[90vh] lg:h-[85vh]
-    bg-gradient-to-br from-darkblue1 via-[#0e0750] via-[#1a0bb5] via-[#4220d4] to-lightblue3
-    rounded-2xl"
+    rounded-2xl
+
+    /* LIGHT */
+    bg-light-canvas border border-light-border shadow-card
+
+    /* DARK */
+    dark:bg-gradient-to-br
+    dark:from-dark-bg
+    dark:via-[#0e0750]
+    dark:via-[#1a0bb5]
+    dark:via-[#4220d4]
+    dark:to-purple3"
       >
         {/* 3D Background / Grid */}
         <Hero />
@@ -26,11 +36,13 @@ export default function Home() {
             flex flex-col items-center justify-center text-center px-4 pointer-events-none">
           <h1 className="
             font-tektur font-bold 
-            text-textPrimary text-4xl 
+            text-light-text-primary
+    dark:text-dark-text-primary/90 text-4xl 
             sm:text-4xl md:text-6xl lg:text-6xl leading-snug max-w-4xl">
             From Confusion to Clarity — Visually.
           </h1>
-          <h5 className=" font-tektur text-textPrimary text-md sm:text-md md:text-lg lg:text-xl mt-14 sm:mt-12 md:mt-14 max-w-2xl">
+          <h5 className=" font-tektur text-light-text-secondary
+    dark:text-dark-text-primary/80 text-md sm:text-md md:text-lg lg:text-xl mt-14 sm:mt-12 md:mt-14 max-w-2xl">
             Understand algorithms instantly with interactive visuals — your shortcut to mastering DSA & problem solving.
           </h5>
         </div>
@@ -57,8 +69,8 @@ export default function Home() {
               </defs>
 
               <text
-                fill="white"
-                className="text-[10px] sm:text-[10px] md:text-[9px] tracking-widest font-tektur">
+                className="text-[10px] sm:text-[10px] md:text-[9px] tracking-widest font-tektur fill-light-text-secondary
+    dark:fill-white">
                 <textPath href="#circlePath" startOffset="0%">
                   SCROLL • SCROLL • SCROLL • SCROLL •
                 </textPath>
@@ -66,8 +78,10 @@ export default function Home() {
             </svg>
 
             {/* Mouse Icon (center) */}
-            <div className="w-5 h-8 border-2 border-textSecondary rounded-full flex justify-center items-start p-1">
-              <div className="w-1 h-1 bg-textSecondary rounded-full animate-bounce"></div>
+            <div className="w-5 h-8 border-2 border-light-text-secondary 
+    dark:border-textSecondary rounded-full flex justify-center items-start p-1">
+              <div className="w-1 h-1 bg-light-text-secondary
+      dark:bg-textsecondary rounded-full animate-bounce"></div>
             </div>
           </div>
         </div>
@@ -78,7 +92,7 @@ export default function Home() {
 
       {/* Algorithms We Cover */}
       <AlgoHero />
-      
+
       {/* Footer Section */}
       <Footer />
 
