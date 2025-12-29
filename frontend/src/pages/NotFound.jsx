@@ -7,11 +7,11 @@ export default function NotFound() {
 
       {/* Text */}
       <div className="text-center md:text-left max-w-md flex flex-col items-center md:items-start">
-        <h1 className="text-3xl md:text-4xl font-semibold text-textSecondary mb-3">
+        <h1 className="text-3xl md:text-4xl font-semibold text-light-text-primary/80 dark:text-dark-text-primary/80 mb-3">
           Under Development
         </h1>
 
-        <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-6">
+        <p className="text-light-text-primary/60 dark:text-dark-text-primary/70 text-sm md:text-base leading-relaxed mb-6">
           This section is under active development and will be launched soon
           with production-ready features.
         </p>
@@ -20,10 +20,10 @@ export default function NotFound() {
           to="/"
           className="
             px-6 py-2.5 rounded-xl
-            bg-white/15 backdrop-blur-xl
-            shadow-lg border border-white/20
-            text-white text-sm
-            hover:bg-white/25 hover:scale-105
+            bg-light-surface/60 dark:bg-dark-surface/60 backdrop-blur-xl
+            shadow-lg border border-light-border/20 dark:border-dark-border/20
+            text-light-text-secondary/70 dark:text-dark-text-primary/80 text-sm
+            hover:bg-light-text-muted/5 dark:hover:bg-dark-text-muted/5 hover:scale-105
             transition-all duration-400
           "
         >

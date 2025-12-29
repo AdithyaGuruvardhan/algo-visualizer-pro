@@ -46,17 +46,17 @@ export default function Features() {
   }, []);
 
   return (
-    <section ref={featuresRef} className="w-full overflow-hidden relative pb-12  bg-light-surface dark:bg-dark-surface">
+    <section ref={featuresRef} className="w-full overflow-hidden relative pb-12  bg-light-bg dark:bg-dark-bg">
 
       {/* TITLE + SUBTITLE */}
-      <div className="max-w-screen-xl mx-auto mt-16 px-4 sm:px-6 md:px-8">
+      <div className="max-w-screen-xl mx-auto mt-6 px-4 sm:px-6 md:px-8">
         <h2 className="font-tektur tracking-tight leading-none 
           text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 
-          font-bold mb-6 text-start text-textPrimary">
+          font-bold mb-6 text-start text-light-text-primary/90 dark:text-dark-text-primary/90">
           Why AlgoVisualizer Pro
         </h2>
 
-        <div className="text-sm sm:text-base mb-14 text-start opacity-80 text-textPrimary">
+        <div className="text-sm sm:text-base mb-14 text-start opacity-80 text-light-text-primary dark:text-dark-text-primary">
           <p>Explore a modern, visual way to master algorithms</p>
           <p>Fast, intuitive, and interactive.</p>
         </div>
@@ -71,11 +71,12 @@ export default function Features() {
               flex flex-col justify-start
               flex-shrink-0 w-80 sm:w-96
               p-8 rounded-2xl
-              bg-gradient-to-br from-[#0c0c0f]/60 to-[#1a1a1f]/60
-              backdrop-blur-xl border border-purple-500/25 shadow-lg
-              hover:border-purple-500/50 hover:shadow-purple-500/20
+              bg-light-surface/70 dark:bg-dark-surface/70
+              backdrop-blur-xl border border-light-text-muted/30 dark:border-dark-border/30 shadow-lg
+              hover:border-light-text-muted/30 hover:dark:border-dark-border/20
+              hover:shadow-light-text-muted/50 hover:dark:shadow-dark-border/20
               hover:scale-[1.02] transition-all duration-300
-              text-textPrimary"
+              text-light-text-primary dark:text-dark-text-primary"
           >
             {/* ICON CONTAINER */}
             <div className="

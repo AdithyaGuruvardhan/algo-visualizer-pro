@@ -66,17 +66,15 @@ export default function Navbar() {
         {/* --- LEFT: Logo --- */}
         <Link
           to="/"
-          className="
-  text-lg sm:text-lg md:text-md lg:text-lg
-  font-bold drop-shadow-md
-  text-light-text-primary dark:text-dark-text-primary
-"
+          className=" text-lg sm:text-lg md:text-md lg:text-lg
+          font-bold drop-shadow-md
+          text-light-text-primary dark:text-dark-text-primary"
         >
           AlgoVisualizer <span className="text-brand-accent">Pro</span>
         </Link>
 
         {/* --- MIDDLE NAV (Desktop Only) --- */}
-        <div className="hidden lg:flex items-center gap-8 px-8 py-2 dark:bg-surface bg-light-subtle backdrop-blur-md rounded-2xl shadow-lg">
+        <div className="hidden lg:flex items-center gap-8 px-8 py-2 dark:bg-dark-surface/50 bg-light-surface/50 backdrop-blur-md rounded-2xl shadow-lg">
           {middleNav.map((item) => (
             <NavLink
               key={item.name}
@@ -84,7 +82,7 @@ export default function Navbar() {
               className={({ isActive }) =>
                 `text-base transition ${isActive
                   ? "font-semibold text-light-text-primary dark:text-dark-text-primary"
-                  : "text-light-text-secondary dark:text-dark-text-secondary hover:text-accent"
+                  : "text-light-text-secondary dark:text-dark-text-secondary hover:text-brand-accent"
                 }`
               }
             >
@@ -98,11 +96,11 @@ export default function Navbar() {
           <Link
             to="/signin"
             className="px-5 py-2 rounded-xl bg-light-surface/70 dark:bg-dark-surface/60
-  text-light-text-primary dark:text-dark-text-primary
-  border border-light-border dark:border-dark-border
-  backdrop-blur-xl shadow-lg
-  hover:bg-light-surface dark:hover:bg-dark-surface
-  transition text-sm"
+            text-light-text-primary dark:text-dark-text-primary
+            border border-light-border dark:border-dark-border
+            backdrop-blur-lg shadow-lg
+            hover:bg-light-surface dark:hover:bg-dark-surface
+            transition text-sm"
           >
             Sign In
           </Link>
@@ -112,16 +110,14 @@ export default function Navbar() {
             ref={themeButtonRef}
             onClick={toggleTheme}
             aria-label="Toggle Theme"
-            className="
-      w-10 h-10
-      rounded-full
-      flex items-center justify-center
-      bg-light-surface/70 dark:bg-dark-surface/60
-  border border-light-border dark:border-dark-border
-  backdrop-blur-md
-  hover:bg-light-surface dark:hover:bg-dark-surface
-  transition
-    "
+            className="w-10 h-10
+            rounded-full
+            flex items-center justify-center
+            bg-light-surface/70 dark:bg-dark-surface/60
+            border border-light-border dark:border-dark-border
+            backdrop-blur-md
+            hover:bg-light-surface dark:hover:bg-dark-surface
+            transition"
           >
             {/* Sun */}
             <svg
@@ -157,12 +153,12 @@ export default function Navbar() {
         >
           <span
             className={`block absolute h-0.5 w-6 bg-light-text-primary dark:bg-dark-text-primary
- transform transition duration-300 pointer-events-none ${open ? "rotate-45" : "-translate-y-1.5"
+            transform transition duration-300 pointer-events-none ${open ? "rotate-45" : "-translate-y-1.5"
               }`}
           ></span>
           <span
             className={`block absolute h-0.5 w-6 bg-light-text-primary dark:bg-dark-text-primary
- transform transition duration-300 pointer-events-none ${open ? "-rotate-45" : "translate-y-1.5"
+            transform transition duration-300 pointer-events-none ${open ? "-rotate-45" : "translate-y-1.5"
               }`}
           ></span>
         </button>
@@ -173,23 +169,21 @@ export default function Navbar() {
         <div
           ref={menuRef}
           className="absolute top-full right-0 mt-1 w-64 bg-light-surface/80 dark:bg-dark-surface/70
-border border-light-border dark:border-dark-border
- backdrop-blur-md rounded-xl shadow-lg p-4 flex flex-col items-end space-y-3"
+          border border-light-border dark:border-dark-border/30
+          backdrop-blur-md rounded-xl shadow-lg p-4 flex flex-col items-end space-y-3"
         >
           <div className="w-full flex justify-end">
             <button
               onClick={toggleTheme}
               aria-label="Toggle Theme"
-              className="
-      w-10 h-10
-      rounded-full
-      flex items-center justify-center
-      bg-light-surface/70 dark:bg-dark-surface/60
-  border border-light-border dark:border-dark-border
-  backdrop-blur-md
-  hover:bg-light-surface dark:hover:bg-dark-surface
-  transition
-    "
+              className="w-10 h-10
+              rounded-full
+              flex items-center justify-center
+              bg-light-surface/70 dark:bg-dark-surface/60
+              border border-light-border dark:border-dark-border/50
+              backdrop-blur-md
+              hover:bg-light-surface dark:hover:bg-dark-surface
+              transition"
             >
               <svg
                 className="w-5 h-5 text-yellow-300 dark:hidden"
@@ -219,12 +213,10 @@ border border-light-border dark:border-dark-border
               key={item.name}
               to={item.path}
               onClick={() => setOpen(false)}
-              className="
-  text-sm bg-white/10 rounded-lg shadow px-4 py-2
-  text-light-text-secondary dark:text-dark-text-secondary
-  hover:text-accent
-  text-center w-full
-"
+              className="text-sm bg-white/10 rounded-lg shadow px-4 py-2
+              text-light-text-secondary dark:text-dark-text-secondary
+              hover:text-accent
+              text-center w-full"
             >
               {item.name}
             </NavLink>
@@ -233,15 +225,13 @@ border border-light-border dark:border-dark-border
           <NavLink
             to="/signin"
             onClick={() => setOpen(false)}
-            className="
-  block text-sm
-  bg-light-surface/70 dark:bg-dark-surface/60
-  text-light-text-primary dark:text-dark-text-primary
-  border border-light-border dark:border-dark-border
-  px-4 py-2 rounded-lg shadow
-  hover:bg-light-surface dark:hover:bg-dark-surface
-  w-full text-center
-"
+            className="block text-sm
+            bg-light-surface/70 dark:bg-dark-surface/60
+            text-light-text-primary dark:text-dark-text-primary
+            border border-light-border dark:border-dark-border/50
+            px-4 py-2 rounded-lg shadow
+            hover:bg-light-surface dark:hover:bg-dark-surface
+            w-full text-center"
           >
             Sign In
           </NavLink>

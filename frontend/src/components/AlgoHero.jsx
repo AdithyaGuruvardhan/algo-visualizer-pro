@@ -66,7 +66,7 @@ export default function AlgoVCover() {
             const gridSize = 20; // spacing between lines
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            ctx.strokeStyle = "rgba(255, 255, 255, 0.07)"; // light grid lines
+            ctx.strokeStyle = "rgba(255, 255, 255, 0.2)"; // light grid lines
             ctx.lineWidth = 0.5;
 
             ctx.beginPath();
@@ -170,25 +170,25 @@ export default function AlgoVCover() {
 
 
     return (
-        <section className="relative w-full text-white overflow-hidden mt-1">
+        <section className="relative w-full text-light-text-primary dark:text-dark-text-primary overflow-hidden mt-1">
             <div ref={wrapperRef} className="w-full">
 
                 <div className="flex flex-col items-center justify-center 
                     text-center
                 ">
-                    <h1 className="font-tektur font-bold text-textPrimary
+                    <h1 className="font-tektur font-bold text-light-text-primary/95 dark:text-dark-text-primary/95
                         text-4xl sm:text-4xl md:text-6xl lg:text-6xl
                         leading-snug
                         max-w-4xl mt-6">
                         What we Cover
                     </h1>
-                    <p className="mt-4 max-w-lg text-sm">
+                    <p className="mt-4 max-w-lg text-sm text-light-text-primary/90 dark:text-dark-text-primary/90">
                         We walk you through every core algorithm that matters for interviews and real-world problem-solving.
                     </p>
                 </div>
 
                 {/* Background */}
-                <div className="absolute inset-0 -z-10 bg-gradient-to-br from-darkblue1 via-[#0e0750] via-[#1a0bb5] via-[#4220d4] to-lightblue3 bg-black bg-blend-multiply" />
+                <div className="absolute inset-0 -z-10 bg-light-bg dark:bg-dark-bg transition" />
 
                 <canvas
                     ref={canvasRef}
@@ -234,7 +234,7 @@ export default function AlgoVCover() {
                 {/* Marker */}
                 <div
                     ref={markerRef}
-                    className="marker absolute w-4 h-4 rounded-full bg-white shadow-[0_0_18px_rgba(96,165,250,0.9)] z-30"
+                    className="marker absolute w-4 h-4 rounded-full bg-light-surface dark:bg-dark-text-primary shadow-[0_0_18px_rgba(96,165,250,0.9)] z-30"
                     style={{ left: "50%", transform: "translate(-50%, -50%)" }}
                 />
 
@@ -246,39 +246,44 @@ export default function AlgoVCover() {
 
                                 {/* Left text (lg) */}
                                 <div className="hidden lg:flex flex-col items-end pr-6">
-                                    <div className="w-0.5 h-32 bg-white/20" />
+                                    <div className="w-0.5 h-32 bg-light-text-primary/80 dark:bg-dark-text-primary/80" />
                                     <div className="text-right">
-                                        <h3 className="text-3xl font-bold tracking-tight text-white">{c.label}</h3>
-                                        <p className="text-sm text-white/90 mt-2">{c.highlight}</p>
+                                        <h3 className="text-3xl font-bold tracking-tight text-light-text-primary
+                                            dark:text-dark-text-secondary">{c.label}</h3>
+                                        <p className="text-sm text-light-text-primary/80
+                                            dark:text-dark-text-primary/80 mt-2">{c.highlight}</p>
                                     </div>
                                 </div>
 
                                 {/* Center circle */}
                                 <div className="flex flex-col items-center justify-center">
-                                    <div className="w-40 h-40 rounded-full bg-white/10 flex items-center justify-center relative backdrop-blur-[2px]">
-                                        <div className="absolute -top-4 -right-6 w-3 h-3 rounded-full bg-white/80 shadow-md" />
-                                        <div className="text-xl font-semibold text-white">{c.label}</div>
+                                    <div className="w-40 h-40 rounded-full bg-light-surface/35 dark:bg-dark-surface/15 border border-light-text-muted/15 dark:border-dark-text-primary/10
+                                            flex items-center justify-center relative backdrop-blur-[2px]">
+                                        <div className="absolute -top-4 -right-6 w-3 h-3 rounded-full bg-light-surface dark:bg-dark-text-primary shadow-md" />
+                                        <div className="text-xl font-semibold text-light-text-primary dark:text-dark-text-primary">{c.label}</div>
                                     </div>
                                     <div className="mt-6 lg:hidden text-center">
-                                        <p className="text-sm text-white/90">{c.highlight}</p>
+                                        <p className="text-sm text-light-text-primary dark:text-dark-text-primary">{c.highlight}</p>
                                     </div>
                                 </div>
 
                                 {/* Right subtopics */}
                                 <div className="flex flex-col items-start pl-6">
-                                    <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-white/10">
-                                        <h4 className="text-sm text-white/95 font-semibold mb-3">Subtopics</h4>
+                                    <div className="bg-light-surface/35 dark:bg-dark-surface/15 rounded-xl p-4 backdrop-blur-sm border border-light-text-muted/15 dark:border-dark-text-primary/10">
+                                        <h4 className="text-sm text-light-text-primary/85 dark:text-dark-text-primary/85 font-semibold mb-3">Subtopics</h4>
                                         <ul className="flex flex-col gap-2">
                                             {c.items.map((it, j) => (
-                                                <li key={j} className="algo-item text-sm text-white/95 flex items-center gap-3">
-                                                    <span className="w-2 h-2 rounded-full bg-white/90 inline-block" />
+                                                <li key={j} className="algo-item text-sm text-light-text-primary/85 dark:text-dark-text-primary/85 flex items-center gap-3">
+                                                    <span className="w-2 h-2 rounded-full 
+                                                            bg-light-text-primary/85 dark:bg-dark-text-primary/85 inline-block 
+                                                            [clip-path:polygon(50%_0%,70%_30%,100%_50%,70%_70%,50%_100%,30%_70%,0%_50%,30%_30%)]" />
                                                     <span>{it}</span>
                                                 </li>
                                             ))}
                                         </ul>
                                     </div>
                                     <div className="mt-6 hidden lg:block">
-                                        <div className="h-12 w-0.5 bg-white/20" />
+                                        <div className="h-12 w-0.5 bg-light-text-primary/80 dark:bg-dark-text-primary/80" />
                                     </div>
                                 </div>
                             </div>
