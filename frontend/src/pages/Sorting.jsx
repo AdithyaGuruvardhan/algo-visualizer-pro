@@ -1,3 +1,11 @@
-export default function Sorting() {
-  return <div className="p-6 text-xl">Sorting Visualizer</div>;
-}
+import SortVisualizer from "../components/algorithms/sorting/SortVisualizer";
+
+const Sorting = () => {
+  return (
+    <div className="min-h-screen flex justify-center items-center">
+      <SortVisualizer />
+    </div>
+  );
+};
+
+export default Sorting;

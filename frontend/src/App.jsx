@@ -7,6 +7,8 @@ import DP from "./pages/DP";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Roadmap from "./pages/Roadmap";
+import Visualizer from "./pages/visualizer";
+import AlgorithmPage from "./pages/AlgorithmPage";
 
 export default function App() {
   return (
@@ -22,6 +24,8 @@ export default function App() {
           <Route path="/graphs" element={<Graphs />} />
           <Route path="/dp" element={<DP />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/visualizer" element={<Visualizer />}/>
+          <Route path="/algorithms/:slug" element={<AlgorithmPage />} />
         </Routes>
       </div>
     </>
