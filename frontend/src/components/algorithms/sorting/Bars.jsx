@@ -1,54 +1,45 @@
 import { useMemo } from "react";
 
-const getColors = () => {
-  const isDark = document.documentElement.classList.contains("dark");
-
-  return isDark
-    ? {
-      idle: "rgba(117,72,210,0.2)",
-      active: "#7548d2",
-      focus: "#a885ee",
-      sorted: "rgba(117,72,210,0.4)",
-    }
-    : {
-      idle: "rgba(38,21,152,0.1)",
-      active: "#7548d2",
-      focus: "#a885ee",
-      sorted: "rgba(38,21,152,0.25)",
-    };
-};
-
 const BAR_WIDTH = 24;
-const GAP = 4;
-const MOVE_X = BAR_WIDTH + GAP;
+const GAP = 6;
 
 const Bars = ({ array, active = [], type, sortedFrom }) => {
-  const COLORS = useMemo(getColors, []);
-
   return (
-    <div className="relative flex items-end gap-1 h-64 select-none">
+    <div
+      className="
+        relative flex items-end gap-[6px] h-64 select-none
+        rounded-xl p-4
+        bg-light-subtle dark:bg-dark-surface
+      "
+    >
       {array.map((val, idx) => {
         const isActive = active.includes(idx);
-        const isSorted = sortedFrom !== undefined && idx >= sortedFrom;
+        const isSorted = sortedFrom !== null && idx === sortedFrom;
 
         return (
           <div
             key={idx}
-            className="rounded-md transition-all duration-300 ease-in-out"
+            className={`
+              rounded-md
+              transition-all duration-300 ease-in-out
+              ${
+                isActive
+                  ? "bg-dark-node-active dark:shadow-node-glow"
+                  : isSorted
+                  ? "bg-dark-node-focus"
+                  : "bg-dark-node-idle"
+              }
+            `}
             style={{
               width: BAR_WIDTH,
               height: val * 4,
-              backgroundColor: isActive
-                ? COLORS.active
-                : isSorted
-                  ? COLORS.sorted
-                  : COLORS.idle,
-
               transform:
-                type === "swap" && isActive
+                type === "swap" && active.length === 2
                   ? idx === active[0]
-                    ? `translateX(${MOVE_X}px)`
-                    : `translateX(-${MOVE_X}px)`
+                    ? `translateX(${(active[1] - active[0]) * (BAR_WIDTH + GAP)}px)`
+                    : idx === active[1]
+                    ? `translateX(${(active[0] - active[1]) * (BAR_WIDTH + GAP)}px)`
+                    : "translateX(0)"
                   : "translateX(0)",
             }}
           />

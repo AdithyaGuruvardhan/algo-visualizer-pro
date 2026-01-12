@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import Bars from "./Bars";
-import { bubbleSortSteps } from "./logic/bubbleSort";
+import { SORTING_ALGOS } from "./logic";
+
 import Pseudocode from "../common/Pseudocode";
 
-const SortVisualizer = () => {
+const SortVisualizer = ({ algorithm }) => {
   const [array, setArray] = useState([]);
   const [steps, setSteps] = useState([]);
   const [stepIndex, setStepIndex] = useState(0);
@@ -12,6 +13,7 @@ const SortVisualizer = () => {
   const [info, setInfo] = useState("");
   const [isPlaying, setIsPlaying] = useState(false);
   const [speed, setSpeed] = useState(400);
+  const [sortedFrom, setSortedFrom] = useState(null);
 
   const currentStep = steps[stepIndex];
 
@@ -27,14 +29,12 @@ const SortVisualizer = () => {
     setSortedFrom(null);
   };
 
-  const [sortedFrom, setSortedFrom] = useState(null);
-
   useEffect(() => {
     generateArray();
   }, []);
 
   const start = () => {
-    const generated = bubbleSortSteps(array);
+    const generated = algorithm.steps(array);
     setSteps(generated);
     setStepIndex(0);
     setIsPlaying(true);
@@ -42,19 +42,17 @@ const SortVisualizer = () => {
   };
 
   useEffect(() => {
-    if (!steps.length || stepIndex >= steps.length) return;
+    if (!currentStep) return;
 
-    const step = steps[stepIndex];
+    setArray(currentStep.array);
+    setActive(currentStep.indices || []);
+    setType(currentStep.type);
+    setInfo(currentStep.message || "");
 
-    setArray(step.array);
-    setActive(step.indices || []);
-    setType(step.type);
-    setInfo(step.message || "");
-
-    if (typeof step.i === "number") {
-      setSortedFrom(array.length - step.i - 1);
+    if (currentStep.type === "sorted" && currentStep.indices?.length) {
+      setSortedFrom(currentStep.indices[0]);
     }
-  }, [stepIndex, steps]);
+  }, [currentStep]);
 
   // Playback engine
   useEffect(() => {
@@ -95,21 +93,31 @@ const SortVisualizer = () => {
           sortedFrom={sortedFrom}
         />
         {currentStep && (
-          <Pseudocode activeLine={currentStep.codeLine} />
+          <Pseudocode
+            code={algorithm.pseudocode}
+            activeLine={currentStep?.codeLine}
+          />
         )}
       </div>
 
       {/* Info panel */}
-      <div className="p-4 rounded-xl bg-light-bg/60 dark:bg-dark-surface/60">
-        <p className="text-sm font-mono">
-          {info || "—"}
-        </p>
+      <div
+        className="
+        rounded-xl p-4
+        bg-light-surface dark:bg-dark-surface
+        border border-light-border dark:border-dark-border/30
+        text-sm font-mono
+        text-light-text-secondary dark:text-dark-text-secondary"
+      >
+        {info || "—"}
       </div>
 
       {/* Controls */}
       <div className="flex flex-wrap gap-3 items-center">
-        <button onClick={start} className="btn-primary">Play</button>
-        <button onClick={() => setIsPlaying(false)} className="btn-secondary">
+        <button onClick={start} className="px-4 py-2 rounded-lg bg-brand-accent text-white shadow-md hover:opacity-90">
+          Play
+        </button>
+        <button onClick={() => setIsPlaying(false)} className="px-4 py-2 rounded-lg bg-light-subtle dark:bg-dark-surface border border-light-border dark:border-dark-border/30">
           Pause
         </button>
         <button onClick={prev} className="btn-secondary">◀ Prev</button>
