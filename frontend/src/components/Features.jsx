@@ -1,8 +1,64 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SpotlightCard from "./SpotlightCard";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const ScrollFloat = ({ children, containerClassName = '', textClassName = '', element = 'h2' }) => {
+  const containerRef = useRef(null);
+
+  const splitText = useMemo(() => {
+    const text = typeof children === 'string' ? children : '';
+    return text.split('').map((char, index) => (
+      <span className="inline-block word" key={index}>
+        {char === ' ' ? '\u00A0' : char}
+      </span>
+    ));
+  }, [children]);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const charElements = el.querySelectorAll('.inline-block');
+
+    gsap.fromTo(
+      charElements,
+      {
+        willChange: 'opacity, transform',
+        opacity: 0,
+        yPercent: 120,
+        scaleY: 2.3,
+        scaleX: 0.7,
+        transformOrigin: '50% 0%'
+      },
+      {
+        duration: 1,
+        ease: 'back.inOut(2)',
+        opacity: 1,
+        yPercent: 0,
+        scaleY: 1,
+        scaleX: 1,
+        stagger: 0.03,
+        scrollTrigger: {
+          trigger: el,
+          start: 'center bottom+=50%',
+          end: 'bottom bottom-=40%',
+          scrub: true
+        }
+      }
+    );
+  }, []);
+
+  const Element = element;
+
+  return (
+    <Element ref={containerRef} className={`overflow-hidden ${containerClassName}`}>
+      <span className={`inline-block ${textClassName}`}>{splitText}</span>
+    </Element>
+  );
+};
 
 export default function Features() {
   const featuresRef = useRef(null);
@@ -50,22 +106,35 @@ export default function Features() {
 
       {/* TITLE + SUBTITLE */}
       <div className="max-w-screen-xl mx-auto mt-6 px-4 sm:px-6 md:px-8">
-        <h2 className="font-tektur tracking-tight leading-none 
-          text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 
-          font-bold mb-6 text-start text-light-text-primary/90 dark:text-dark-text-primary/90">
+        <ScrollFloat 
+          containerClassName="font-tektur tracking-tight leading-none text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 text-start text-light-text-primary/90 dark:text-dark-text-primary/90"
+          textClassName="leading-[1.5]"
+        >
           Why AlgoVisualizer Pro
-        </h2>
+        </ScrollFloat>
 
-        <div className="text-sm sm:text-base mb-14 text-start opacity-80 text-light-text-primary dark:text-dark-text-primary">
-          <p>Explore a modern, visual way to master algorithms</p>
-          <p>Fast, intuitive, and interactive.</p>
+        <div className="text-sm sm:text-base mb-14 text-start text-light-text-primary dark:text-dark-text-primary">
+          <ScrollFloat
+            element="p"
+            containerClassName=""
+            textClassName="leading-[1.5]"
+          >
+            Explore a modern, visual way to master algorithms
+          </ScrollFloat>
+          <ScrollFloat
+            element="p"
+            containerClassName=""
+            textClassName="leading-[1.5]"
+          >
+            Fast, intuitive, and interactive.
+          </ScrollFloat>
         </div>
       </div>
 
       {/* SCROLLING CARDS */}
       <div ref={containerRef} className="flex gap-8 px-6 w-full">
         {features.map((f, i) => (
-          <div
+          <SpotlightCard
             key={i}
             className="
               flex flex-col justify-start
@@ -74,8 +143,7 @@ export default function Features() {
               bg-light-surface/70 dark:bg-dark-surface/70
               backdrop-blur-xl border border-light-text-muted/30 dark:border-dark-border/30 shadow-lg
               hover:border-light-text-muted/30 hover:dark:border-dark-border/20
-              hover:shadow-light-text-muted/50 hover:dark:shadow-dark-border/20
-              hover:scale-[1.02] transition-all duration-300
+              transition-all duration-300
               text-light-text-primary dark:text-dark-text-primary"
           >
             {/* ICON CONTAINER */}
@@ -89,7 +157,7 @@ export default function Features() {
             </div>
             <h3 className="text-xl font-semibold mb-3 font-tektur">{f.title}</h3>
             <p className="text-sm opacity-80 leading-relaxed">{f.desc}</p>
-          </div>
+          </SpotlightCard>
         ))}
       </div>
 
